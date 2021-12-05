@@ -42,7 +42,7 @@
 
 <main on:mousemove={shadow} style="--sx: {sx}px; --sy: {sy}px">
 	<article
-		use:transform
+		use:transform={{ pos: { x: ww / 2 - 100, y: wh / 2 - 100 }, size: { width: 200, height: 200 } }}
 		on:drag:start={() => (event = 'start dragging node')}
 		on:drag:delta={(e) => (event = `dragging node to [${e.detail.pos.x}:${e.detail.pos.y}]`)}
 		on:drag:end={() => (event = 'end dragging node')}
@@ -114,7 +114,6 @@
 		overflow: hidden;
 	}
 
-	main,
 	article,
 	div,
 	aside {

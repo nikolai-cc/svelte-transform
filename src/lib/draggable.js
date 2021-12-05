@@ -9,6 +9,8 @@ const draggable = (node, config = {}) => {
         margin = 15
     } = config;
 
+    console.log('draggable', config);
+
     handle = handle instanceof Node ? handle : document.querySelector(handle);
     let origin = pos;
 
@@ -55,6 +57,8 @@ const draggable = (node, config = {}) => {
         update: (config) => {
             pos = config.pos || pos;
             draw();
+
+            console.log('draggable', config)
         },
         destroy: () => {
             unlisten('pointerdown', start, handle);

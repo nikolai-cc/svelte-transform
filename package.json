@@ -1,6 +1,6 @@
 {
   "name": "svelte-transform",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Opinionated domnode transform actions for Svelte.",
   "license": "MIT",
   "repository": {

@@ -10,8 +10,6 @@ const resizable = (node, config = {}) => {
         margin = 15,
     } = config;
 
-    console.log('resizable', config)
-
     handle = handle instanceof Node ? handle : document.querySelector(handle);
 
     let borders = { top: 0, right: 0, left: 0, bottom: 0 }
@@ -28,6 +26,8 @@ const resizable = (node, config = {}) => {
         // continue only if one of the sensor values is true
         if (!Object.values(sensor).some(el => el===true)) return
         e.stopPropagation();
+        e.preventDefault();
+        node.setPointerCapture(e.pointerId);
 
         origin = { x: e.clientX, y: e.clientY };
 
@@ -39,6 +39,7 @@ const resizable = (node, config = {}) => {
     }
 
     let delta = (e) => {
+        e.preventDefault();
         e.stopPropagation();
         if (sensor.top) {
             size.height += (origin.y - e.clientY);
@@ -66,6 +67,9 @@ const resizable = (node, config = {}) => {
 
     let end = (e) => {
         e.stopPropagation();
+        e.preventDefault();
+        node.releasePointerCapture(e.pointerId);
+
         listen('pointermove', move, node)
         unlisten('pointermove', delta);
         unlisten('pointerup', end);
@@ -89,8 +93,6 @@ const resizable = (node, config = {}) => {
             size = config.size || size;
 
             draw();
-
-            console.log('resizable', config)
         },
         destroy: () => {
             unlisten('pointermove', move, node)

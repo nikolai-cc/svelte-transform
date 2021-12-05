@@ -9,8 +9,6 @@ const draggable = (node, config = {}) => {
         margin = 15
     } = config;
 
-    console.log('draggable', config);
-
     handle = handle instanceof Node ? handle : document.querySelector(handle);
     let origin = pos;
 
@@ -18,7 +16,9 @@ const draggable = (node, config = {}) => {
         let borders = getBorderPosition(node, pos);
         let sensor = checkSensors(borders, {x: e.clientX, y: e.clientY}, margin);
         if (Object.values(sensor).some(el => el===true)) return
+        e.preventDefault();
         e.stopPropagation();
+        node.setPointerCapture(e.pointerId);
 
         origin = { x: e.clientX, y: e.clientY };
         
@@ -28,6 +28,7 @@ const draggable = (node, config = {}) => {
     }
 
     let delta = (e) => {
+        e.preventDefault();
         e.stopPropagation();
         pos.x += e.clientX - origin.x;
         pos.y += e.clientY - origin.y;
@@ -40,7 +41,9 @@ const draggable = (node, config = {}) => {
     }
 
     let end = (e) => {
+        e.preventDefault();
         e.stopPropagation();
+        node.releasePointerCapture(e.pointerId);
         unlisten('pointermove', delta);
         unlisten('pointerup', end);
         dispatch('drag:end', { pos }, node);
@@ -57,8 +60,6 @@ const draggable = (node, config = {}) => {
         update: (config) => {
             pos = config.pos || pos;
             draw();
-
-            console.log('draggable', config)
         },
         destroy: () => {
             unlisten('pointerdown', start, handle);

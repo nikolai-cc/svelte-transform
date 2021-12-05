@@ -5,8 +5,6 @@ import draggable from './draggable';
 import resizable from './resizable';
 
 const transform = (node, config = {}) => {
-    console.log('transform', config)
-
     config.pos = config.pos || { x: node.clientLeft, y: node.clientTop };
     config.size = config.size || { width: node.clientWidth, height: node.clientHeight };
     

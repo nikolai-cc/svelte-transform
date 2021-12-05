@@ -10,6 +10,8 @@ Opinionated domnode transform actions for svelte.
 
 Currently supports dragging (modifying translate3d) and resizing (modifying width & height). Uses [pointerdown](https://caniuse.com/mdn-api_document_pointerdown_event) events.
 
+[🖥 Demo](https://svtr.vercel.app/)
+
 ## Actions
 
 #### Draggable

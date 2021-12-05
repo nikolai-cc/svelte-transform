@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import vercel from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
@@ -17,7 +17,7 @@ const config = {
 	}),
 
 	kit: {
-		adapter: adapter(),
+		adapter: vercel(),
 
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte'

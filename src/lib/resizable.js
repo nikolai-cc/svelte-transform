@@ -25,6 +25,7 @@ const resizable = (node, config = {}) => {
     let start = (e) => {
         // continue only if one of the sensor values is true
         if (!Object.values(sensor).some(el => el===true)) return
+        e.stopPropagation();
 
         origin = { x: e.clientX, y: e.clientY };
 
@@ -36,6 +37,7 @@ const resizable = (node, config = {}) => {
     }
 
     let delta = (e) => {
+        e.stopPropagation();
         if (sensor.top) {
             size.height += (origin.y - e.clientY);
             pos.y -= 0.5 * (origin.y - e.clientY)
@@ -63,6 +65,7 @@ const resizable = (node, config = {}) => {
     }
 
     let end = (e) => {
+        e.stopPropagation();
         listen('pointermove', move, node)
         unlisten('pointermove', delta);
         unlisten('pointerup', end);

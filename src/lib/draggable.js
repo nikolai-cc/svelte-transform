@@ -16,6 +16,7 @@ const draggable = (node, config = {}) => {
         let borders = getBorderPosition(node, pos);
         let sensor = checkSensors(borders, {x: e.clientX, y: e.clientY}, margin);
         if (Object.values(sensor).some(el => el===true)) return
+        e.stopPropagation();
 
         origin = { x: e.clientX, y: e.clientY };
         
@@ -25,6 +26,7 @@ const draggable = (node, config = {}) => {
     }
 
     let delta = (e) => {
+        e.stopPropagation();
         pos.x += e.clientX - origin.x;
         pos.y += e.clientY - origin.y;
 
@@ -36,6 +38,7 @@ const draggable = (node, config = {}) => {
     }
 
     let end = (e) => {
+        e.stopPropagation();
         unlisten('pointermove', delta);
         unlisten('pointerup', end);
         dispatch('drag:end', { pos }, node);

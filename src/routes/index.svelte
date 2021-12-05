@@ -111,6 +111,7 @@
 		box-sizing: border-box;
 		font-family: Verdana, Geneva, Tahoma, sans-serif;
 		font-weight: bold;
+		overflow: hidden;
 	}
 
 	main,

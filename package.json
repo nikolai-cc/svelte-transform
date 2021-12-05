@@ -1,6 +1,16 @@
 {
   "name": "svelte-transform",
   "version": "0.1.0",
+  "description": "Oopinionated domnode transform actions for Svelte.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikolai-cc/svelte-transform"
+  },
+  "author": {
+    "name": "nikolai-cc",
+    "url": "https://github.com/nikolai-cc"
+  },
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",

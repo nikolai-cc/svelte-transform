@@ -5,6 +5,9 @@ import draggable from './draggable';
 import resizable from './resizable';
 
 const transform = (node, config = {}) => {
+    config.pos = config.pos || { x: node.clientLeft, y: node.clientTop };
+    config.size = config.size || { width: node.clientWidth, height: node.clientHeight };
+    
     let draggable_action = draggable(node, config);
     let resizable_action = resizable(node, config);
 

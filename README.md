@@ -8,9 +8,7 @@ At the current stage this project is not a lot more than a proof-of-concept. In 
 
 Opinionated domnode transform actions for svelte.
 
-Currently supports dragging (modifying translate3d) and resizing (modifying width & height). Uses (pointerdown)[https://caniuse.com/mdn-api_document_pointerdown_event] events.
-
-
+Currently supports dragging (modifying translate3d) and resizing (modifying width & height). Uses [pointerdown](https://caniuse.com/mdn-api_document_pointerdown_event) events.
 
 ## Actions
 
@@ -34,17 +32,18 @@ Using all transformations
 
 ```html
 <script>
-        import transform from 'svelte-transform';
+	import transform from 'svelte-transform';
 </script>
 
-<div use:transform>Transform me like one of your French girls.</div>;
+<div use:transform>Transform me like one of your French girls.</div>
+;
 ```
 
 Using single transformations
 
 ```html
 <script>
-    import { draggable, resizable } from 'svelte-transform';
+	import { draggable, resizable } from 'svelte-transform';
 </script>
 
 <div use:draggable>Drag me, don't resize me.</div>
@@ -52,8 +51,6 @@ Using single transformations
 
 <div>Leave me alone</div>
 ```
-
-
 
 #### Events
 
@@ -79,7 +76,7 @@ Every action emits three events: `start` `delta` and `end`.
 
 Each event containts a `detail` object of the following form:
 
-```json
+```js
 detail {
     pos: {
         x: [current x position in px],
@@ -91,8 +88,6 @@ detail {
     }
 }
 ```
-
-
 
 #### Controlled behavior.
 
